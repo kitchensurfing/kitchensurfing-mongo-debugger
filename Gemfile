@@ -9,3 +9,7 @@ gem 'mongoid', '~> 4.0.0' # Mongoid (pronounced mann-goyd) is an Object-Document
 gem 'moped', path: "vendor/moped"
 
 gem 'unicorn' # Web server
+
+group :production do
+  gem 'rails_12factor'
+end
