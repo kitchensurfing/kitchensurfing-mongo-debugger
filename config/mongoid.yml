@@ -1,0 +1,34 @@
+<%
+
+url = ENV['MONGODB_URL'] || case Rails.env
+  when "test" then "mongodb://localhost:27017/kitchensurfing_test#{ENV['TEST_ENV_NUMBER']}"
+  when "development" then "mongodb://localhost:27017/kitchensurfing_development#{ENV["TEST_ENV_NUMBER"]}"
+end
+
+%>
+
+development: &defaults
+  sessions:
+    default:
+      uri: <%= url %>
+      options:
+        max_retries: 30
+        retry_interval: 1
+        refresh_interval: 10
+        down_interval: 10
+
+  options:
+    #allow_dynamic_fields: true
+    include_root_in_json: false
+    include_type_for_serialization: true
+    preload_models: true # preload models to support polymorphic associations via mass assignments
+    scope_overwrite_exception: true
+    raise_not_found_error: true
+    use_activesupport_time_zone: false
+    use_utc: true
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
