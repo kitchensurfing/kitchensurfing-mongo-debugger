@@ -1,6 +1,6 @@
 <%
 
-url = ENV['MONGODB_URL'] || case Rails.env
+url = ENV['MONGOLAB_URI'] || case Rails.env
   when "test" then "mongodb://localhost:27017/kitchensurfing_test#{ENV['TEST_ENV_NUMBER']}"
   when "development" then "mongodb://localhost:27017/kitchensurfing_development#{ENV["TEST_ENV_NUMBER"]}"
 end
